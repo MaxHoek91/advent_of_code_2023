@@ -18,6 +18,7 @@ mod day_14_parabolic_reflector_dish;
 mod day_15_lens_library;
 mod day_16_the_floor_will_be_lava;
 mod util;
+mod day_17_clumsy_crucible;
 
 
 fn main() {
@@ -39,14 +40,15 @@ fn main() {
     day_fourteen();
     day_fifteen();
     day_sixteen();
+    day_seventeen();
 
 }
 
 
 fn day_one() {
-    let day_1_file = Path::new("./data/day_1_trebuchet.txt").to_str().unwrap();
+    let file = Path::new("./data/day_1_trebuchet.txt").to_str().unwrap();
     let timer = Instant::now();
-    let cal_value = day_1_trebuchet::determine_calibration_values(day_1_file);
+    let cal_value = day_1_trebuchet::determine_calibration_values(file);
 
     println!("Day 1: Trebuchet");
     println!("Run Time: {:?}", timer.elapsed());
@@ -58,9 +60,9 @@ fn day_one() {
 
 
 fn day_two() {
-    let day_2_file = Path::new("./data/day_2_cube_conundrum.txt").to_str().unwrap();
+    let file = Path::new("./data/day_2_cube_conundrum.txt").to_str().unwrap();
     let timer = Instant::now();
-    let (possible_games_sum, cube_power) = day_2_cube_conundrum::determine_games_and_power(day_2_file);
+    let (possible_games_sum, cube_power) = day_2_cube_conundrum::determine_games_and_power(file);
 
     println!("Day 2: Cube Conundrum");
     println!("Run Time: {:?}", timer.elapsed());
@@ -72,9 +74,9 @@ fn day_two() {
 
 
 fn day_three() {
-    let day_3_file = Path::new("./data/day_3_gear_ratios.txt").to_str().unwrap();
+    let file = Path::new("./data/day_3_gear_ratios.txt").to_str().unwrap();
     let timer = Instant::now();
-    let (part_number, gear_ratio) = day_3_gear_ratios::determine_part_number_and_gear_ratio(day_3_file);
+    let (part_number, gear_ratio) = day_3_gear_ratios::determine_part_number_and_gear_ratio(file);
 
     println!("Day 3: Gear Ratios");
     println!("Run Time: {:?}", timer.elapsed());
@@ -86,9 +88,9 @@ fn day_three() {
 
 
 fn day_four() {
-    let day_4_file = Path::new("./data/day_4_scratchcards.txt").to_str().unwrap();
+    let file = Path::new("./data/day_4_scratchcards.txt").to_str().unwrap();
     let timer = Instant::now();
-    let (points, cards) = day_4_scratchcards::determine_scratchcards_and_points(day_4_file);
+    let (points, cards) = day_4_scratchcards::determine_scratchcards_and_points(file);
 
     println!("Day 4: Scratchcards");
     println!("Run Time: {:?}", timer.elapsed());
@@ -101,9 +103,9 @@ fn day_four() {
 
 
 fn day_five() {
-    let day_5_file = Path::new("./data/day_5_seed_soil.txt").to_str().unwrap();
+    let file = Path::new("./data/day_5_seed_to_location.txt").to_str().unwrap();
     let timer = Instant::now();
-    let closest_location = day_5_seed_soil::determine_closest_location(day_5_file);
+    let closest_location = day_5_seed_soil::determine_closest_location(file);
 
     println!("Day 5: Seed-to-Location");
     println!("Run Time: {:?}", timer.elapsed());
@@ -115,9 +117,9 @@ fn day_five() {
 
 
 fn day_six() {
-    let day_6_file = Path::new("./data/day_6_boat_race.txt").to_str().unwrap();
+    let file = Path::new("./data/day_6_boat_race.txt").to_str().unwrap();
     let timer = Instant::now();
-    let ways_to_win = day_6_wait_for_it::determine_winning_races(day_6_file);
+    let ways_to_win = day_6_wait_for_it::determine_winning_races(file);
 
     println!("Day 6: Wait for it (Boat Race)");
     println!("Run Time: {:?}", timer.elapsed());
@@ -129,9 +131,9 @@ fn day_six() {
 
 
 fn day_seven() {
-    let day_7_file = Path::new("./data/day_7_camel_cards.txt").to_str().unwrap();
+    let file = Path::new("./data/day_7_camel_cards.txt").to_str().unwrap();
     let timer = Instant::now();
-    let winnings = day_7_camel_cards::determine_total_winnings(day_7_file);
+    let winnings = day_7_camel_cards::determine_total_winnings(file);
 
     println!("Day 7: Camel Cards");
     println!("Run Time: {:?}", timer.elapsed());
@@ -143,9 +145,9 @@ fn day_seven() {
 
 
 fn day_eight() {
-    let day_8_file = Path::new("./data/day_8_haunted_wasteland.txt").to_str().unwrap();
+    let file = Path::new("./data/day_8_haunted_wasteland.txt").to_str().unwrap();
     let timer = Instant::now();
-    let number_of_steps = day_8_haunted_wasteland::determine_steps_through_wasteland(day_8_file);
+    let number_of_steps = day_8_haunted_wasteland::determine_steps_through_wasteland(file);
 
     println!("Day 8: Haunted Wasteland");
     println!("Run Time: {:?}", timer.elapsed());
@@ -157,9 +159,9 @@ fn day_eight() {
 
 
 fn day_nine() {
-    let day_9_file = Path::new("./data/day_9_mirage_maintenance.txt").to_str().unwrap();
+    let file = Path::new("./data/day_9_mirage_maintenance.txt").to_str().unwrap();
     let timer = Instant::now();
-    let sum_of_values = day_9_mirage_maintenance::determine_sum_of_values(day_9_file);
+    let sum_of_values = day_9_mirage_maintenance::determine_sum_of_values(file);
 
     println!("Day 9: Mirage Maintenance");
     println!("Run Time: {:?}", timer.elapsed());
@@ -171,9 +173,9 @@ fn day_nine() {
 
 
 fn day_ten() {
-    let day_10_file = Path::new("./data/day_10_pipe_maze.txt").to_str().unwrap();
+    let file = Path::new("./data/day_10_pipe_maze.txt").to_str().unwrap();
     let timer = Instant::now();
-    let (farthest_distance, enclosed) = day_10_pipe_maze::determine_longest_loop_and_enclosed_tiles(day_10_file);
+    let (farthest_distance, enclosed) = day_10_pipe_maze::determine_longest_loop_and_enclosed_tiles(file);
 
     println!("Day 10: Pipe Maze");
     println!("Run Time: {:?}", timer.elapsed());
@@ -185,9 +187,9 @@ fn day_ten() {
 
 
 fn day_eleven() {
-    let day_11_file = Path::new("./data/day_11_cosmic_expansion.txt").to_str().unwrap();
+    let file = Path::new("./data/day_11_cosmic_expansion.txt").to_str().unwrap();
     let timer = Instant::now();
-    let sum_of_distances = day_11_cosmic_expansion::determine_sum_of_distances(day_11_file);
+    let sum_of_distances = day_11_cosmic_expansion::determine_sum_of_distances(file);
 
     println!("Day 11: Cosmic Expansion");
     println!("Run Time: {:?}", timer.elapsed());
@@ -199,9 +201,9 @@ fn day_eleven() {
 
 
 fn day_twelve() {
-    let day_12_file = Path::new("./data/day_12_hot_springs.txt").to_str().unwrap();
+    let file = Path::new("./data/day_12_hot_springs.txt").to_str().unwrap();
     let timer = Instant::now();
-    let total_arrangements = day_12_hot_springs::determine_sum_of_arrangements(day_12_file);
+    let total_arrangements = day_12_hot_springs::determine_sum_of_arrangements(file);
 
     println!("Day 12: Hot Springs");
     println!("Run Time: {:?}", timer.elapsed());
@@ -213,9 +215,9 @@ fn day_twelve() {
 
 
 fn day_thirteen() {
-    let day_13_file = Path::new("./data/day_13_point_of_incidence.txt").to_str().unwrap();
+    let file = Path::new("./data/day_13_point_of_incidence.txt").to_str().unwrap();
     let timer = Instant::now();
-    let sum_of_notes = day_13_point_of_incidence::determine_sum_of_notes(day_13_file);
+    let sum_of_notes = day_13_point_of_incidence::determine_sum_of_notes(file);
 
     println!("Day 13: Point of Incidence");
     println!("Run Time: {:?}", timer.elapsed());
@@ -227,9 +229,9 @@ fn day_thirteen() {
 
 
 fn day_fourteen() {
-    let day_14_file = Path::new("./data/day_14_parabolic_reflector_dish.txt").to_str().unwrap();
+    let file = Path::new("./data/day_14_parabolic_reflector_dish.txt").to_str().unwrap();
     let timer = Instant::now();
-    let total_load = day_14_parabolic_reflector_dish::determine_total_load(day_14_file);
+    let total_load = day_14_parabolic_reflector_dish::determine_total_load(file);
 
     println!("Day 14: Parabolic Reflector Dish");
     println!("Run Time: {:?}", timer.elapsed());
@@ -241,9 +243,9 @@ fn day_fourteen() {
 
 
 fn day_fifteen() {
-    let day_15_file = Path::new("./data/day_15_len_library.txt").to_str().unwrap();
+    let file = Path::new("./data/day_15_lens_library.txt").to_str().unwrap();
     let timer = Instant::now();
-    let (hash_sum, focusing_power) = day_15_lens_library::determine_hash(day_15_file);
+    let (hash_sum, focusing_power) = day_15_lens_library::determine_hash(file);
 
     println!("Day 15: Lens Library");
     println!("Run Time: {:?}", timer.elapsed());
@@ -255,16 +257,29 @@ fn day_fifteen() {
 
 
 fn day_sixteen() {
-    let day_16_file = Path::new("./data/day_16_the_floor_will_be_lava.txt").to_str().unwrap();
-    // let day_16_file = Path::new("./data/test.txt").to_str().unwrap();
+    let file = Path::new("./data/day_16_the_floor_will_be_lava.txt").to_str().unwrap();
     let timer = Instant::now();
-
-    let energized_tiles = day_16_the_floor_will_be_lava::determine_energized_tiles(day_16_file);
+    let energized_tiles = day_16_the_floor_will_be_lava::determine_energized_tiles(file);
 
     println!("Day 16: The Floor will be Lava");
     println!("Run Time: {:?}", timer.elapsed());
     println!("Energized Tiles 1: {}", energized_tiles.0);
-    println!("Energized Tiles 2: {}", energized_tiles.1);
+    println!("Energized Tiles 2: {}\n", energized_tiles.1);
     assert_eq!(energized_tiles.0, 8125);
     assert_eq!(energized_tiles.1, 8489);
+}
+
+
+fn day_seventeen() {
+    let file = Path::new("./data/day_17_clumsy_crucible.txt").to_str().unwrap();
+    // let file = Path::new("./data/test.txt").to_str().unwrap();
+    let timer = Instant::now();
+    let heat_loss = day_17_clumsy_crucible::determine_path_of_minimal_heat_loss(file);
+
+    println!("Day 17: Clumsy Crucible");
+    println!("Run Time: {:?}", timer.elapsed());
+    println!("Path of Minimum Heat Loss 1: {}", heat_loss.0);
+    println!("Path of Minimum Heat Loss 2: {}\n", heat_loss.1);
+    assert_eq!(heat_loss.0, 686);
+    assert_eq!(heat_loss.1, 801);
 }
