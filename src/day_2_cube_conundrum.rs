@@ -71,3 +71,33 @@ fn cube_power(game: &str) -> u32 {
     }
     min_red * min_green * min_blue
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    const EXAMPLE: &[&str; 5] = &[
+        "3 blue, 4 red; 1 red, 2 green, 6 blue; 2 green",
+        "1 blue, 2 green; 3 green, 4 blue, 1 red; 1 green, 1 blue",
+        "8 green, 6 blue, 20 red; 5 blue, 4 red, 13 green; 5 green, 1 red",
+        "1 green, 3 red, 6 blue; 3 green, 6 red; 3 green, 15 blue, 14 red",
+        "6 red, 1 blue, 3 green; 2 blue, 1 red, 2 green"
+    ];
+    const POSSIBLE_GAMES: [bool; 5] = [true, true, false, false, true];
+    const CUBE_POWER: [u32; 5] = [48, 12, 1560, 630, 36];
+
+    #[test]
+    fn test_valid_draw() {
+        for (input, expected) in EXAMPLE.iter().zip(POSSIBLE_GAMES) {
+            assert_eq!(input.split(';').all(valid_draw), expected);
+        }
+    }
+
+    #[test]
+    fn test_cube_power() {
+        for (input, expected) in EXAMPLE.iter().zip(CUBE_POWER) {
+            assert_eq!(cube_power(input), expected);
+        }
+    }
+}
