@@ -103,3 +103,35 @@ fn find_adjacent(adjacent_numbers: &mut Vec<u32>, line: &str, regex: &Regex, gea
         }
     }
 }
+
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_calculate_ratio() {
+        let re: Regex = Regex::new(r"\d+").unwrap();
+
+        let gear_ratio = calculate_ratio(
+            "467..114..",
+            "...*......",
+            "..35..633.",
+            &re, 3);
+        assert_eq!(gear_ratio, 16345);
+
+        let gear_ratio = calculate_ratio(
+            "......#...",
+            "617*......",
+            ".....+.58.",
+            &re, 3);
+        assert_eq!(gear_ratio, 0);
+
+        let gear_ratio = calculate_ratio(
+            "......755.",
+            "...$.*....",
+            ".664.598..",
+            &re, 5);
+        assert_eq!(gear_ratio, 451490);
+    }
+}
