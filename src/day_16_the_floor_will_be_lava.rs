@@ -1,6 +1,8 @@
 use std::collections::{HashMap, HashSet, VecDeque};
 use std::fs;
 
+use rayon::prelude::*;
+
 use crate::util::text_to_graph;
 
 pub fn determine_energized_tiles(file_path: &str) -> (usize, usize) {
@@ -12,10 +14,29 @@ pub fn determine_energized_tiles(file_path: &str) -> (usize, usize) {
     let mut energized_tiles_part_two: [usize; 4] = [0; 4];
     let (x_max, y_max) = *graph.keys().max().unwrap();
 
-    energized_tiles_part_two[0] = (0..y_max).map(| y | breadth_first_search(&graph, ((-1, y), b'E'))).max().unwrap();
-    energized_tiles_part_two[1] = (0..y_max).map(| y | breadth_first_search(&graph, ((x_max + 1, y), b'W'))).max().unwrap();
-    energized_tiles_part_two[2] = (0..x_max).map(| x | breadth_first_search(&graph, ((x, -1), b'S'))).max().unwrap();
-    energized_tiles_part_two[3] = (0..x_max).map(| x | breadth_first_search(&graph, ((x, y_max + 1), b'N'))).max().unwrap();
+    energized_tiles_part_two[0] = (0..y_max)
+        .into_par_iter()
+        .map(| y | breadth_first_search(&graph, ((-1, y), b'E')))
+        .max()
+        .unwrap();
+
+    energized_tiles_part_two[1] = (0..y_max)
+        .into_par_iter()
+        .map(| y | breadth_first_search(&graph, ((x_max + 1, y), b'W')))
+        .max()
+        .unwrap();
+
+    energized_tiles_part_two[2] = (0..x_max)
+        .into_par_iter()
+        .map(| x | breadth_first_search(&graph, ((x, -1), b'S')))
+        .max()
+        .unwrap();
+
+    energized_tiles_part_two[3] = (0..x_max)
+        .into_par_iter()
+        .map(| x | breadth_first_search(&graph, ((x, y_max + 1), b'N')))
+        .max()
+        .unwrap();
 
     (energized_tiles_part_one, *energized_tiles_part_two.iter().max().unwrap())
 }

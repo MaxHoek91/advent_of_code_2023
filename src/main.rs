@@ -17,13 +17,13 @@ mod day_13_point_of_incidence;
 mod day_14_parabolic_reflector_dish;
 mod day_15_lens_library;
 mod day_16_the_floor_will_be_lava;
-mod util;
 mod day_17_clumsy_crucible;
 mod day_18_lavaduct_lagoon;
+mod util;
 
 
 fn main() {
-    println!("Advent of Code 2023");
+    println!("Advent of Code 2023\n");
 
     day_one();
     day_two();
@@ -100,7 +100,6 @@ fn day_four() {
     println!("Scratchcard Total: {cards}\n");
     assert_eq!(points, 21_568);
     assert_eq!(cards, 11_827_296);
-
 }
 
 
@@ -295,7 +294,7 @@ fn day_eighteen() {
     println!("Day 18: Lavaduct Lagoon");
     println!("Run Time: {:?}", timer.elapsed());
     println!("Lagoon Volume 1: {}", lagoon_volume.0);
-    println!("Lagoon Volume 2: {}", lagoon_volume.1);
+    println!("Lagoon Volume 2: {}\n", lagoon_volume.1);
     assert_eq!(lagoon_volume.0, 52231);
     assert_eq!(lagoon_volume.1, 57196493937398);
 }
