@@ -19,6 +19,7 @@ mod day_15_lens_library;
 mod day_16_the_floor_will_be_lava;
 mod util;
 mod day_17_clumsy_crucible;
+mod day_18_lavaduct_lagoon;
 
 
 fn main() {
@@ -41,6 +42,7 @@ fn main() {
     day_fifteen();
     day_sixteen();
     day_seventeen();
+    day_eighteen();
 
 }
 
@@ -272,7 +274,6 @@ fn day_sixteen() {
 
 fn day_seventeen() {
     let file = Path::new("./data/day_17_clumsy_crucible.txt").to_str().unwrap();
-    // let file = Path::new("./data/test.txt").to_str().unwrap();
     let timer = Instant::now();
     let heat_loss = day_17_clumsy_crucible::determine_path_of_minimal_heat_loss(file);
 
@@ -282,4 +283,19 @@ fn day_seventeen() {
     println!("Path of Minimum Heat Loss 2: {}\n", heat_loss.1);
     assert_eq!(heat_loss.0, 686);
     assert_eq!(heat_loss.1, 801);
+}
+
+
+fn day_eighteen() {
+    let file = Path::new("./data/day_18_lavaduct_lagoon.txt").to_str().unwrap();
+    // let file = Path::new("./data/test.txt").to_str().unwrap();
+    let timer = Instant::now();
+    let lagoon_volume =  day_18_lavaduct_lagoon::determine_lava_volume(file);
+
+    println!("Day 18: Lavaduct Lagoon");
+    println!("Run Time: {:?}", timer.elapsed());
+    println!("Lagoon Volume 1: {}", lagoon_volume.0);
+    println!("Lagoon Volume 2: {}", lagoon_volume.1);
+    assert_eq!(lagoon_volume.0, 52231);
+    assert_eq!(lagoon_volume.1, 57196493937398);
 }
