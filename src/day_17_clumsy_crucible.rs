@@ -42,7 +42,7 @@ fn dijkstra(
             return heat_loss;
         }
 
-        if route.get(&(current, prev_dir)).is_some_and(| &loss | heat_loss > loss) {
+        if route.get(&(current, prev_dir)).is_some_and(| &loss | loss < heat_loss) {
             continue;  // We already have a better route to this point
         }
 

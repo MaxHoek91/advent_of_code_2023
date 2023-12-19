@@ -19,6 +19,7 @@ pub mod day_15_lens_library;
 pub mod day_16_the_floor_will_be_lava;
 pub mod day_17_clumsy_crucible;
 pub mod day_18_lavaduct_lagoon;
+pub mod day_19_aplenty;
 
 mod util;
 
@@ -44,6 +45,7 @@ pub fn solve_all() {
     day_16();
     day_17();
     day_18();
+    day_19();
 }
 
 fn day_1() {
@@ -295,5 +297,20 @@ fn day_18() {
         Lagoon Volume 1: {}\n\
         Lagoon Volume 2: {}\n",
         timer.elapsed(), lagoon_volume.0, lagoon_volume.1
+    );
+}
+
+fn day_19() {
+    let file = Path::new("./data/day_19_aplenty.txt").to_str().unwrap();
+    // let file = Path::new("./data/test.txt").to_str().unwrap();
+    let timer = Instant::now();
+    let (rating_numbers, distinct_combinations) =  day_19_aplenty::determine_rating_numbers(file);
+
+    println!(
+        "Day 19: Aplenty\n\
+        Run Time: {:?}\n\
+        Rating Numbers of Accepted Parts: {}\n\
+        Distinct Combinations of Ratings: {}\n",
+        timer.elapsed(), rating_numbers, distinct_combinations
     );
 }

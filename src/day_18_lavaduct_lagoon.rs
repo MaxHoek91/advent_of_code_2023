@@ -65,9 +65,7 @@ fn generate_vertices_part_two(data: &str) -> (Vec<(isize, isize)>, isize) {
             _ => unreachable!()
         };
 
-        let distance = isize::from_str_radix(
-            hex.get(0..5).unwrap(), 16
-        ).unwrap();
+        let distance = isize::from_str_radix(hex.get(0..5).unwrap(), 16).unwrap();
         circumference += distance;
 
         let next_vertex = (
