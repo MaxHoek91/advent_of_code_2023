@@ -20,6 +20,7 @@ pub mod day_16_the_floor_will_be_lava;
 pub mod day_17_clumsy_crucible;
 pub mod day_18_lavaduct_lagoon;
 pub mod day_19_aplenty;
+pub mod day_20_pulse_propagation;
 
 mod util;
 
@@ -46,6 +47,7 @@ pub fn solve_all() {
     day_17();
     day_18();
     day_19();
+    day_20();
 }
 
 fn day_1() {
@@ -302,7 +304,6 @@ fn day_18() {
 
 fn day_19() {
     let file = Path::new("./data/day_19_aplenty.txt").to_str().unwrap();
-    // let file = Path::new("./data/test.txt").to_str().unwrap();
     let timer = Instant::now();
     let (rating_numbers, distinct_combinations) =  day_19_aplenty::determine_rating_numbers(file);
 
@@ -312,5 +313,20 @@ fn day_19() {
         Rating Numbers of Accepted Parts: {}\n\
         Distinct Combinations of Ratings: {}\n",
         timer.elapsed(), rating_numbers, distinct_combinations
+    );
+}
+
+fn day_20() {
+    let file = Path::new("./data/day_20_pulse_propagation.txt").to_str().unwrap();
+    // let file = Path::new("./data/test.txt").to_str().unwrap();
+    let timer = Instant::now();
+    let (pulse_product, fewest_presses) =  day_20_pulse_propagation::determine_pulse_product(file);
+
+    println!(
+        "Day 20: Pulse Propagation\n\
+        Run Time: {:?}\n\
+        Pulse Product: {}\n\
+        Fewest Presses to reach RX: {}\n",
+        timer.elapsed(), pulse_product, fewest_presses
     );
 }

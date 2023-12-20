@@ -1,6 +1,8 @@
 use std::collections::HashMap;
 use std::fs;
 
+use crate::util;
+
 pub fn determine_steps_through_wasteland(file_path: &str) -> (usize, usize) {
     let data: String = fs::read_to_string(file_path).unwrap();
     let mut lines = data.lines();
@@ -59,25 +61,5 @@ pub fn determine_steps_through_wasteland(file_path: &str) -> (usize, usize) {
         n_steps_part_two.push(n_steps);
     }
 
-    (n_steps_part_one, lcm(&n_steps_part_two))
-}
-
-
-fn lcm(nums: &[usize]) -> usize {
-    // Compute Least Common Multiple of the values using recursion.
-    if nums.len() == 1 { return nums[0]; } // Base Case
-
-    let a = nums[0];
-    let b = lcm(&nums[1..]);
-
-    a * b / gcd_of_two_numbers(a, b)
-}
-
-
-#[inline]
-fn gcd_of_two_numbers(a: usize, b: usize) -> usize {
-    // Compute the greatest common divisor of two numbers with recursion.
-    if b == 0 { return a; } // Base Case
-
-    gcd_of_two_numbers(b, a % b)
+    (n_steps_part_one, util::lcm(&n_steps_part_two))
 }

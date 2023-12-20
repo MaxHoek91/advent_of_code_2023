@@ -164,3 +164,21 @@ fn test_day_18() {
     assert_eq!(lagoon_volume.0, 52231);
     assert_eq!(lagoon_volume.1, 57196493937398);
 }
+
+#[test]
+fn test_day_19() {
+    let file = Path::new("./data/day_19_aplenty.txt").to_str().unwrap();
+    let (rating_numbers, distinct_combinations) =  day_19_aplenty::determine_rating_numbers(file);
+
+    assert_eq!(rating_numbers, 350678);
+    assert_eq!(distinct_combinations, 124831893423809);
+}
+
+#[test]
+fn test_day_20() {
+    let file = Path::new("./data/day_20_pulse_propagation.txt").to_str().unwrap();
+    let (pulse_product, fewest_presses) =  day_20_pulse_propagation::determine_pulse_product(file);
+
+    assert_eq!(pulse_product, 806332748);
+    assert_eq!(fewest_presses, 228060006554227);
+}
