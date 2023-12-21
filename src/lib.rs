@@ -21,6 +21,8 @@ pub mod day_17_clumsy_crucible;
 pub mod day_18_lavaduct_lagoon;
 pub mod day_19_aplenty;
 pub mod day_20_pulse_propagation;
+pub mod day_21_step_counter;
+
 
 mod util;
 
@@ -48,6 +50,7 @@ pub fn solve_all() {
     day_18();
     day_19();
     day_20();
+    day_21();
 }
 
 fn day_1() {
@@ -318,7 +321,6 @@ fn day_19() {
 
 fn day_20() {
     let file = Path::new("./data/day_20_pulse_propagation.txt").to_str().unwrap();
-    // let file = Path::new("./data/test.txt").to_str().unwrap();
     let timer = Instant::now();
     let (pulse_product, fewest_presses) =  day_20_pulse_propagation::determine_pulse_product(file);
 
@@ -328,5 +330,20 @@ fn day_20() {
         Pulse Product: {}\n\
         Fewest Presses to reach RX: {}\n",
         timer.elapsed(), pulse_product, fewest_presses
+    );
+}
+
+fn day_21() {
+    let file = Path::new("./data/day_21_step_counter.txt").to_str().unwrap();
+    // let file = Path::new("./data/test.txt").to_str().unwrap();
+    let timer = Instant::now();
+    let plots_visited =  day_21_step_counter::determine_visited_garden_plots(file);
+
+    println!(
+        "Day 21: Step Counter\n\
+        Run Time: {:?}\n\
+        Reachable Garden Plots 1: {}\n\
+        Reachable Garden Plots 2: {}\n",
+        timer.elapsed(), plots_visited.0, plots_visited.1
     );
 }

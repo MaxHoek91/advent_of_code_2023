@@ -49,12 +49,7 @@ fn breadth_first_search(graph: &HashMap<(isize, isize), u8>, start: ((isize, isi
     let mut visited: HashSet<((isize, isize), u8)> = HashSet::new();
     let mut energized: HashSet<(isize, isize)> = HashSet::new();
 
-    while !queue.is_empty() {
-        let (mut position, direction) = match queue.pop_front() {
-            Some((p, d)) => (p, d),
-            None => break  // No more steps to take.
-        };
-
+    while let Some((mut position, direction)) = queue.pop_front() {
         if !visited.insert((position, direction)) {
             continue;  // We got back to a path that we already visited.
         }

@@ -38,8 +38,8 @@ pub fn determine_pulse_product(file_path: &str) -> (usize, usize) {
         let mut high_pulse_on_trace = false;
         while !high_pulse_on_trace {
             let (_, _, pulse) = network.push_button(trace);
-            n_pushes += 1;
             high_pulse_on_trace = pulse;
+            n_pushes += 1;
         }
 
         button_pushes.push(n_pushes);
@@ -75,7 +75,7 @@ fn create_network(data: &str) -> Network {
         };
     }
 
-    // Parse the receivers to add the conjuction state logic.
+    // Parse the receivers to add the conjunction state logic.
     for (name, receivers) in network.receivers.iter() {
         for rec in receivers {
             if let Some(m) = network.modules.get_mut(rec) {
@@ -100,6 +100,7 @@ impl<'a> Network<'a> {
     }
 
     fn reset(&mut self) {
+        // Reset everything to the Low pulse state
         for module in self.modules.values_mut() {
             module.flip_state = false;
             for state in module.conj_states.values_mut() {
@@ -109,6 +110,8 @@ impl<'a> Network<'a> {
     }
 
     fn push_button(&mut self, trace_input: &str) -> (usize, usize, bool) {
+        // Propagate a button press.
+
         let mut low_pulses: usize = 1;  // Button push is the first low signal.
         let mut high_pulses: usize = 0;
         let mut high_pulse_on_trace: bool = false;
@@ -121,17 +124,17 @@ impl<'a> Network<'a> {
 
             let module = match self.modules.get_mut(receiver) {
                 Some(m) => m,
-                None => continue  // reached an output.
+                None => continue  // reached an output module that has no receivers.
             };
 
             let output = match module.propagate(sender, sig) {
                 Some(signal) => signal,
-                None => continue
+                None => continue  // Signal terminates here (can happen on FlipFlop)
             };
 
             let next_receivers = self.receivers.get(receiver).unwrap();
 
-            match output {
+            match output {  // Add the pulses to the counters.
                 true => high_pulses += next_receivers.len(),
                 false => low_pulses += next_receivers.len()
             }
@@ -162,6 +165,7 @@ impl<'a> Module<'a> {
     }
 
     fn propagate(&mut self, sender: &'a str, signal: bool) -> Option<bool> {
+        // TODO separate into 3 distinct structs
         match self.operation {
             Operation::FlipFlop => self.propagate_flipflop(signal),
             Operation::Conjunction => self.propagate_conjunction(sender, signal),
@@ -193,3 +197,63 @@ enum Operation {
     Conjunction,
     None
 }
+
+
+// type Pulse = bool;
+// const LOW: Pulse = false;
+// const HIGH: Pulse = true;
+//
+//
+// trait Propagate<'a> {
+//     fn propagate(&mut self, sender: &'a str, signal: Pulse) -> Option<Pulse>;
+// }
+//
+//
+// struct FlipFlop {
+//     state: Pulse
+// }
+//
+// impl FlipFlop {
+//     fn new() -> Self { Self { state: LOW } }
+// }
+//
+// impl<'a> Propagate<'a> for FlipFlop {
+//     fn propagate(&mut self, sender: &str, signal: Pulse) -> Option<Pulse> {
+//         match signal {
+//             HIGH => None,
+//             LOW if self.state == LOW => { self.state = HIGH; Some(HIGH) },
+//             LOW  => { self.state = LOW; Some(LOW) },  // if self.state == HIGH
+//         }
+//     }
+// }
+//
+//
+// struct Conjuction<'a> {
+//     states: HashMap<&'a str, Pulse>
+// }
+//
+// impl<'a> Conjuction<'a> {
+//     fn new() -> Self { Self { states: HashMap::new() } }
+// }
+//
+// impl<'a> Propagate<'a> for Conjuction<'a> {
+//     fn propagate(&mut self, sender: &'a str, signal: Pulse) -> Option<Pulse> {
+//         self.states.entry(sender).and_modify(| val| *val = signal);
+//         match self.states.iter().all(| (_, val) | *val == HIGH) {
+//             HIGH => Some(LOW),
+//             LOW => Some(HIGH)
+//         }
+//     }
+// }
+//
+// struct Broadcast {}
+//
+// impl Broadcast {
+//     fn new() -> Self { Self {} }
+// }
+//
+// impl<'a> Propagate<'a> for Broadcast {
+//     fn propagate(&mut self, sender: &str, signal: Pulse) -> Option<Pulse> {
+//         Some(signal)
+//     }
+// }

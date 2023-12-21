@@ -182,3 +182,12 @@ fn test_day_20() {
     assert_eq!(pulse_product, 806332748);
     assert_eq!(fewest_presses, 228060006554227);
 }
+
+#[test]
+fn test_day_21() {
+    let file = Path::new("./data/day_21_step_counter.txt").to_str().unwrap();
+    let plots_visited =  day_21_step_counter::determine_visited_garden_plots(file);
+
+    assert_eq!(plots_visited.0, 3503);
+    assert_eq!(plots_visited.1, 584211423220706);
+}
