@@ -191,3 +191,12 @@ fn test_day_21() {
     assert_eq!(plots_visited.0, 3503);
     assert_eq!(plots_visited.1, 584211423220706);
 }
+
+#[test]
+fn test_day_22() {
+    let file = Path::new("./data/day_22_sand_slabs.txt").to_str().unwrap();
+    let (safe_bricks, fallen_bricks) =  day_22_sand_slabs::determine_safe_bricks(file);
+
+    assert_eq!(safe_bricks, 471);
+    assert_eq!(fallen_bricks, 68525);
+}

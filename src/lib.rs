@@ -22,7 +22,7 @@ pub mod day_18_lavaduct_lagoon;
 pub mod day_19_aplenty;
 pub mod day_20_pulse_propagation;
 pub mod day_21_step_counter;
-
+pub mod day_22_sand_slabs;
 
 mod util;
 
@@ -51,6 +51,7 @@ pub fn solve_all() {
     day_19();
     day_20();
     day_21();
+    day_22();
 }
 
 fn day_1() {
@@ -335,7 +336,6 @@ fn day_20() {
 
 fn day_21() {
     let file = Path::new("./data/day_21_step_counter.txt").to_str().unwrap();
-    // let file = Path::new("./data/test.txt").to_str().unwrap();
     let timer = Instant::now();
     let plots_visited =  day_21_step_counter::determine_visited_garden_plots(file);
 
@@ -345,5 +345,20 @@ fn day_21() {
         Reachable Garden Plots 1: {}\n\
         Reachable Garden Plots 2: {}\n",
         timer.elapsed(), plots_visited.0, plots_visited.1
+    );
+}
+
+fn day_22() {
+    let file = Path::new("./data/day_22_sand_slabs.txt").to_str().unwrap();
+    // let file = Path::new("./data/test.txt").to_str().unwrap();
+    let timer = Instant::now();
+    let (safe_bricks, fallen_bricks) =  day_22_sand_slabs::determine_safe_bricks(file);
+
+    println!(
+        "Day 22: Sand Slabs\n\
+        Run Time: {:?}\n\
+        Safe Bricks: {}\n\
+        Fallen Bricks: {}\n",
+        timer.elapsed(), safe_bricks, fallen_bricks
     );
 }
