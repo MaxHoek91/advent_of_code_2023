@@ -4,10 +4,9 @@ const  MAX_RED: u8 = 12;
 const MAX_GREEN: u8 = 13;
 const MAX_BLUE: u8 = 14;
 
-
+/// Calculate the sum of game numbers for valid games
+/// A game is valid if all draws have all cubes below the max count
 pub fn determine_games_and_power(file_path: &str) -> (u32, u32) {
-    // Calculate the sum of game numbers for valid games
-    // A game is valid if all draws have all cubes below the max count
     let data: String = fs::read_to_string(file_path).unwrap();
 
     let mut valid_game_sum: u32 = 0;
@@ -26,10 +25,10 @@ pub fn determine_games_and_power(file_path: &str) -> (u32, u32) {
     (valid_game_sum, cube_power_sum)
 }
 
-
+/// Determine if a draw is valid. Return immediately upon finding an invalid draw.
 #[inline]
 fn valid_draw(draw: &str) -> bool {
-    // Determine if a draw is valid. Return immediately upon finding an invalid draw.
+    
     for cubes in draw.split(',') {
         let (count, color) = cubes
             .trim()
@@ -48,10 +47,9 @@ fn valid_draw(draw: &str) -> bool {
     true
 }
 
-
+/// Determine the cube power.
 #[inline]
 fn cube_power(game: &str) -> u32 {
-    // Determine the cube power.
     let mut min_red: u32 = 0;
     let mut min_green: u32 = 0;
     let mut min_blue: u32 = 0;

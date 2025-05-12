@@ -116,7 +116,7 @@ fn calculate_card_score(hand_chars: &Vec<char>) -> (u8, u8) {
     // Get the score without any modifications
     let score_part_one = convert_count_to_score(&char_counts);
 
-    // Remove the jokers and add them onto the card with the card with the highest count
+    // Remove the jokers and add them onto the card with the highest count
     let jokers = match char_counts.remove_entry(&'J') {
         Some((_char, x)) => x,
         None => 0  // There were no jokers in the hand.

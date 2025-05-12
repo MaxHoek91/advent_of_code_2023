@@ -19,7 +19,7 @@ pub fn determine_pulse_product(file_path: &str) -> (usize, usize) {
     }
 
     // Part Two
-    // If all of the traced values are "High" we send a signal to "rx"
+    // If all the traced values are "High" we send a signal to "rx"
     // Find when each of these becomes "High" then lcm to find "rx"
     let mut tracers: Vec<&str> = Vec::new();
     for (name, module) in network.modules.iter() {

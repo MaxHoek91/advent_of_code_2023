@@ -18,7 +18,7 @@ pub fn determine_total_load(file_path: &str) -> (usize, usize) {
 
     // Part Two
     // To find the cycle keep a history of dishes
-    // Once we find a the repeating cycle in our history, align with the target number and take the beam load.
+    // Once we find a repeating cycle in our history, align with the target number and take the beam load.
     let mut dish: ReflectorDish = ReflectorDish::from_str(&data).unwrap();
     let mut total_load_part_two: usize = 0;
     let mut dish_history: HashMap<ReflectorDish, usize> = HashMap::new();

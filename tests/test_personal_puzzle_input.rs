@@ -151,7 +151,6 @@ fn test_day_16() {
 fn test_day_17() {
     let file = Path::new("./data/day_17_clumsy_crucible.txt").to_str().unwrap();
     let heat_loss = day_17_clumsy_crucible::determine_path_of_minimal_heat_loss(file);
-
     assert_eq!(heat_loss.0, 686);
     assert_eq!(heat_loss.1, 801);
 }
